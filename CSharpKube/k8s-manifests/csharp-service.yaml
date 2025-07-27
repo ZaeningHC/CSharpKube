@@ -7,6 +7,7 @@ spec:
   ports:
     - port: 5250
       targetPort: 5250
+      nodePort: 30002
   selector:
     app: csharp-app
-  type: ClusterIP
+  type: NodePort
