@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csharp-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: csharp-app
+  template:
+    metadata:
+      labels:
+        app: csharp-app
+    spec:
+      containers:
+        - name: csharp-api
+          image: csharp-api:latest
+          ports:
+            - containerPort: 5250
