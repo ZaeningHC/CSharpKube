@@ -18,4 +18,4 @@ spec:
           image: csharp-api:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 5250
+            - containerPort: 8081
