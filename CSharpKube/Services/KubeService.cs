@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using CSharpKube.Models;
 
 namespace CSharpKube.Services
@@ -17,14 +17,16 @@ namespace CSharpKube.Services
 
         public async Task<HttpResponseMessage> SendKubeToJavaApi(Kube kube)
         {
-            var jsonContent = JsonConvert.SerializeObject(kube);
+            var jsonContent = JsonSerializer.Serialize(kube, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            var javaApiUrl = "http://java-api:8080/api/java/receive"; // Call the "receive" endpoint in Java
+            var javaApiUrl = "http://java-api:8080/api/java/receive";
 
-            var response = await _httpClient.PostAsync(javaApiUrl, content);
-
-            return response;
+            return await _httpClient.PostAsync(javaApiUrl, content);
         }
     }
 }
