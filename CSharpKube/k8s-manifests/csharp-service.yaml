@@ -6,7 +6,7 @@ metadata:
 spec:
   ports:
     - port: 5250
-      targetPort: 8081
+      targetPort: 5250
       nodePort: 30002
   selector:
     app: csharp-app

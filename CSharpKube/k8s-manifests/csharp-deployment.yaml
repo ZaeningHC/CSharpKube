@@ -18,4 +18,9 @@ spec:
           image: csharp-api:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 8081
+            - containerPort: 5250
+          env:
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "5250"
+            - name: ASPNETCORE_URLS
+              value: "http://0.0.0.0:5250"

@@ -12,11 +12,6 @@ builder.Services.AddTransient<KubeService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.Listen(IPAddress.Any, 8081);
-});
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
