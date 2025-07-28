@@ -1,3 +1,4 @@
+using System.Net;
 using CSharpKube.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,11 @@ builder.Services.AddTransient<KubeService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Listen(IPAddress.Any, 8081);
+});
 
 var app = builder.Build();
 
